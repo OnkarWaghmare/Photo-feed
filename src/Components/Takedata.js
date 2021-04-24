@@ -27,7 +27,7 @@ const Takedata=()=>{
     // Infinite Scroll logic
     const infiniteScroll=()=>{
         if(window.scrollY+window.innerHeight>=document.documentElement.scrollHeight){
-            fetch("https://api.unsplash.com/search/photos?query=nature&client_id=Ki0FngEJOfTALpbX-EPB5CrxsDOd6js0t3WkJqXJkHo")
+            fetch("https://api.unsplash.com/search/photos?query=random&client_id=Ki0FngEJOfTALpbX-EPB5CrxsDOd6js0t3WkJqXJkHo")
             .then((res)=>res.json())
             .then((obj)=>{
                 const temp=[...data,...obj.results];
@@ -44,14 +44,14 @@ const Takedata=()=>{
 
     }
     const getPrevImg=()=>{
-        if(index!=0){
+        if(index!==0){
             setIndex(index-1);
         }else setIndex(data.length-1);
         
     }
 
     const getNextImg=()=>{
-        if(index!=(data.length-1)){
+        if(index!==(data.length-1)){
             setIndex(index+1);
         }else setIndex(0);
     }
@@ -65,9 +65,10 @@ const Takedata=()=>{
 
         {/* Conditional randering of image modal */}
         {flag && <div className="modalContainer">
-            <button id="prev" onClick={getPrevImg}><img src={LeftArrow} className="icon"/></button>
-            <img src={data[index].urls.regular} id="modalImg"/>
-            <button id="next" onClick={getNextImg}><img src={RightArrow} className="icon"/></button>
+            <button id="prev" onClick={getPrevImg}><img src={LeftArrow} className="icon" alt="leftArrowIcon"/></button>
+            <img src={data[index].urls.regular} id="modalImg" alt="modalImg"/>
+            <button id="next" onClick={getNextImg}><img src={RightArrow} className="icon" alt="rightArrowIcon"/></button>
+            <p id="modalMessage">To close the image modal click on any background image tile</p>
             </div>}
         </>
     )
